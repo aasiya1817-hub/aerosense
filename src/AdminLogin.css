@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.al-root {
+  min-height: 100vh;
+  background: #060a14;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  position: relative; overflow: hidden;
+}
+
+/* ── BACKGROUND GRID ── */
+.al-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(125,211,252,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125,211,252,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridShift 20s linear infinite;
+}
+@keyframes gridShift { from{background-position:0 0} to{background-position:60px 60px} }
+
+/* ── GLOWING ORBS ── */
+.al-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none;
+}
+.al-orb-1 { width:500px; height:500px; background:radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%); top:-150px; left:-150px; animation: orbFloat1 12s ease-in-out infinite; }
+.al-orb-2 { width:400px; height:400px; background:radial-gradient(circle, rgba(125,211,252,0.1),  transparent 70%); bottom:-100px; right:-100px; animation: orbFloat2 15s ease-in-out infinite; }
+.al-orb-3 { width:300px; height:300px; background:radial-gradient(circle, rgba(236,72,153,0.07),  transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); animation: orbFloat3 8s ease-in-out infinite; }
+@keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,20px)} }
+@keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-30px)} }
+@keyframes orbFloat3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+
+/* ── CARD ── */
+.al-card {
+  position: relative; z-index: 10;
+  width: 440px;
+  background: rgba(10,14,26,0.9);
+  border: 1px solid rgba(125,211,252,0.15);
+  border-radius: 24px;
+  padding: 48px 44px;
+  backdrop-filter: blur(40px);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 32px 80px rgba(0,0,0,0.6), 0 0 120px rgba(99,102,241,0.08);
+  animation: cardIn 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes cardIn { from{opacity:0;transform:translateY(30px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+/* ── LOGO ── */
+.al-logo { display:flex; align-items:center; gap:12px; margin-bottom:32px; }
+.al-logo-icon {
+  width:44px; height:44px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(125,211,252,0.2));
+  border: 1px solid rgba(125,211,252,0.3);
+  border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.3rem;
+}
+.al-logo-text { font-size:1.4rem; font-weight:800; }
+.al-logo-aero { color:#fff; }
+.al-logo-sense { color:#7dd3fc; }
+.al-logo-badge {
+  margin-left:auto;
+  padding:3px 10px;
+  background: rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius:50px;
+  font-size:0.65rem; font-weight:700; letter-spacing:0.1em; color:#818cf8;
+  text-transform:uppercase;
+}
+
+/* ── TITLE ── */
+.al-title { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:#fff; margin-bottom:6px; }
+.al-sub { font-size:0.85rem; color:rgba(255,255,255,0.35); margin-bottom:32px; }
+
+/* ── FORM ── */
+.al-field { margin-bottom:18px; }
+.al-label { display:block; font-size:0.75rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:8px; }
+.al-input-wrap { position:relative; }
+.al-input-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:1rem; pointer-events:none; }
+.al-input {
+  width:100%; padding:13px 14px 13px 42px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  color:#fff; font-family:'Outfit',sans-serif; font-size:0.9rem;
+  outline:none; transition:all 0.2s;
+}
+.al-input:focus { border-color:rgba(125,211,252,0.5); background:rgba(125,211,252,0.04); box-shadow:0 0 0 3px rgba(125,211,252,0.08); }
+.al-input::placeholder { color:rgba(255,255,255,0.2); }
+
+/* ── HINT ── */
+.al-hint {
+  margin-bottom:24px;
+  padding:11px 14px;
+  background:rgba(125,211,252,0.05);
+  border:1px solid rgba(125,211,252,0.12);
+  border-radius:10px;
+  font-size:0.75rem; color:rgba(255,255,255,0.35);
+  display:flex; align-items:center; gap:8px;
+}
+.al-hint strong { color:rgba(125,211,252,0.7); }
+
+/* ── BUTTON ── */
+.al-btn {
+  width:100%; padding:14px;
+  background:linear-gradient(135deg, #4f46e5, #0ea5e9);
+  border:none; border-radius:12px; cursor:pointer;
+  color:#fff; font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:700;
+  letter-spacing:0.02em;
+  transition:all 0.25s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  box-shadow: 0 4px 24px rgba(79,70,229,0.35);
+}
+.al-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(79,70,229,0.45); }
+.al-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+/* ── ERROR ── */
+.al-error {
+  margin-top:14px; padding:11px 14px;
+  background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2);
+  border-radius:10px; font-size:0.8rem; color:#f87171;
+  display:flex; align-items:center; gap:8px; animation:shake 0.4s ease;
+}
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+.al-spinner { width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
