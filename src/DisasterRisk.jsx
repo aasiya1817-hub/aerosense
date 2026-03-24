@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./DisasterRisk.css";
 
-const ML_API = "http://localhost:5000";
+const ML_API = "https://aerosense-ml-production.up.railway.app";
 
 const DISASTER_CONFIG = {
   flood: {
