@@ -8,7 +8,7 @@ import AdminLogin       from "./AdminLogin";
 import AdminDashboard   from "./AdminDashboard";
 import DisasterRisk     from "./DisasterRisk";
 import AdvisoryPage     from "./AdvisoryPage";
-import AdvisoryDetail   from "./Advisorydetail";
+import AdvisoryDetail   from "./AdvisoryDetail"; // ✅ FIXED HERE
 
 export default function App() {
   const [user, setUser] = useState(() => {
@@ -38,26 +38,48 @@ export default function App() {
     return <DisasterRisk user={user} onBack={() => setScreen("landing")} />;
 
   if (screen === "advisory")
-    return <AdvisoryPage user={user} onBack={() => setScreen("landing")} onSelectOccupation={(occ) => { setSelectedOcc(occ); setScreen("advisory-detail"); }}/>;
+    return <AdvisoryPage 
+      user={user} 
+      onBack={() => setScreen("landing")} 
+      onSelectOccupation={(occ) => { setSelectedOcc(occ); setScreen("advisory-detail"); }}
+    />;
 
   if (screen === "advisory-detail" && selectedOcc)
-    return <AdvisoryDetail user={user} occupation={selectedOcc} onBack={() => setScreen("advisory")} />;
+    return <AdvisoryDetail 
+      user={user} 
+      occupation={selectedOcc} 
+      onBack={() => setScreen("advisory")} 
+    />;
 
   if (screen === "weather")
-    return <WeatherDashboard onLogout={handleLogout} cityOverride={cityOverride} onBack={() => setScreen(cityOverride ? "explore" : "landing")} />;
+    return <WeatherDashboard 
+      onLogout={handleLogout} 
+      cityOverride={cityOverride} 
+      onBack={() => setScreen(cityOverride ? "explore" : "landing")} 
+    />;
 
   if (screen === "explore")
-    return <ExplorePage onBack={() => setScreen("landing")} onViewCityWeather={handleViewCityWeather} onGoProfile={() => setScreen("profile")} />;
+    return <ExplorePage 
+      onBack={() => setScreen("landing")} 
+      onViewCityWeather={handleViewCityWeather} 
+      onGoProfile={() => setScreen("profile")} 
+    />;
 
   if (screen === "profile")
-    return <ProfilePage onBack={() => setScreen("explore")} onViewCityWeather={handleViewCityWeather} onLogout={handleLogout} />;
+    return <ProfilePage 
+      onBack={() => setScreen("explore")} 
+      onViewCityWeather={handleViewCityWeather} 
+      onLogout={handleLogout} 
+    />;
 
-  return <UserDashboard
-    onViewWeather={handleViewWeather}
-    onLogout={handleLogout}
-    onExplore={() => setScreen("explore")}
-    onProfile={() => setScreen("profile")}
-    onDisaster={() => setScreen("disaster")}
-    onAdvisory={() => setScreen("advisory")}
-  />;
+  return (
+    <UserDashboard
+      onViewWeather={handleViewWeather}
+      onLogout={handleLogout}
+      onExplore={() => setScreen("explore")}
+      onProfile={() => setScreen("profile")}
+      onDisaster={() => setScreen("disaster")}
+      onAdvisory={() => setScreen("advisory")}
+    />
+  );
 }
