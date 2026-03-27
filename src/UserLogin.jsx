@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./UserLogin.css";
 
-const BASE_URL = "http://localhost/aerosense-api";
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost/aerosense-api"
+  : "https://aerosense.gt.tc/aerosense-api";
 
 const CITIES = [
   "Ahmedabad","Mumbai","Delhi","Bangalore","Hyderabad","Chennai",
@@ -355,10 +357,9 @@ export default function UserLogin({ setUser }) {
           <p className="ul-foot">Already registered? <button className="ul-link" onClick={() => switchTo("login")}>Login</button></p>
         </div>
 
-        {/* OVERLAY — dark navy AeroSense theme */}
+        {/* OVERLAY */}
         <div className="slider-overlay">
           <div className="slider-overlay-inner">
-
             <div className="overlay-panel overlay-left">
               <Logo />
               <div className="overlay-divider" />
@@ -366,7 +367,6 @@ export default function UserLogin({ setUser }) {
               <p className="overlay-desc">Already have an account? Sign in to continue your AeroSense journey.</p>
               <button className="overlay-btn" onClick={() => switchTo("login")}>Login →</button>
             </div>
-
             <div className="overlay-panel overlay-right">
               <Logo />
               <div className="overlay-divider" />
@@ -374,7 +374,6 @@ export default function UserLogin({ setUser }) {
               <p className="overlay-desc">Join AeroSense and get real-time environmental intelligence for your city.</p>
               <button className="overlay-btn" onClick={() => switchTo("signup")}>Sign Up →</button>
             </div>
-
           </div>
         </div>
 
